@@ -23,9 +23,9 @@ class PCF8575
         uint8_t  isConnected(void);
         void     pinMode    (uint8_t pin, uint8_t mode);
         uint8_t  read       (uint8_t pin);
-        uint16_t read16     (void);
+        uint16_t read       (void);
         void     write      (uint8_t pin, uint8_t state);
-        void     write16    (uint16_t state);
+        void     write      (uint16_t state);
         void     shiftLeft  (uint8_t n);
         void     shiftRight (uint8_t n);
         void     rotateLeft (uint8_t n);

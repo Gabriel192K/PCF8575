@@ -41,7 +41,7 @@ void PCF8575::pinMode(uint8_t pin, uint8_t mode)
 {
     if (pin > 15) return;
     this->direction = (mode == INPUT) ? (this->direction | (1 << pin)) : (this->direction & ~(1 << pin));
-    PCF8575::write16(this->direction);
+    PCF8575::write(this->direction);
 }
 
 /*********************************************
@@ -50,7 +50,7 @@ Purpose:  Read 16 bits of data from device
 Input:    None
 Return:   16 bits of data from device
 *********************************************/
-uint16_t PCF8575::read16(void)
+uint16_t PCF8575::read(void)
 {
     if (this->twi->requestFrom(address, 2) != 2) return(0);
     this->input = (uint8_t)this->twi->read();
@@ -65,7 +65,7 @@ Purpose:  Write 16 bits of data to device
 Input:    16 bits of data to device
 Return:   None
 *********************************************/
-void PCF8575::write16(uint16_t data)
+void PCF8575::write(uint16_t data)
 {
     this->output = data;
     this->twi->beginTransmission(address);
@@ -83,7 +83,7 @@ Return:   Specific pin from device
 uint8_t PCF8575::read(uint8_t pin)
 {
     if (pin > 15) return (0);
-    this->read16();
+    this->read();
     return ((this->input >> pin) & 1);
 }
 
@@ -97,7 +97,7 @@ void PCF8575::write(uint8_t pin, uint8_t state)
 {
     if (pin > 15) return;
     this->output = (state == HIGH) ? (this->output | (1 << pin)) : (this->output & ~(1 << pin));
-    this->write16(output);
+    this->write(output);
 }
 
 /*********************************************
@@ -110,7 +110,7 @@ void PCF8575::shiftLeft(uint8_t n)
 {
     if ((!n) || (!this->output)) return;
     this->output = (n > 15) ? (0) : (this->output << n);
-    this->write16(this->output);
+    this->write(this->output);
 }
 
 /*********************************************
@@ -123,7 +123,7 @@ void PCF8575::shiftRight(uint8_t n)
 {
     if ((!n) || (!this->output)) return;
     this->output = (n > 15) ? (0) : (this->output >> n);
-    this->write16(this->output);
+    this->write(this->output);
 }
 
 /*********************************************
@@ -148,7 +148,7 @@ void PCF8575::rotateRight(uint8_t n)
     n &= 15;
     if (!n) return;
     this->output = (this->output >> n) | (this->output << (15 - n));
-    this->write16(this->output);
+    this->write(this->output);
 }
 
 /*********************************************
@@ -164,5 +164,5 @@ void PCF8575::reverse(void)
     x = (((x & 0xCCCC) >> 2) | ((x & 0x3333) << 2)); //  x = 32107654BA98FEDC
     x = (((x & 0xF0F0) >> 4) | ((x & 0x0F0F) << 4)); //  x = 76543210FEDCBA98
     x = (x >> 8) | ( x << 8);                        //  x = FEDCBA9876543210
-    this->write16(x);
+    this->write(x);
 }
