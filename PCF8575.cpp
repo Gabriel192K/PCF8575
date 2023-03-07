@@ -59,7 +59,7 @@ uint8_t PCF8575::isConnected(void)
 
 void PCF8575::pinMode(uint8_t pin, uint8_t mode)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return;
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return;
@@ -76,7 +76,7 @@ Return:   16 bits of data from device
 *********************************************/
 uint16_t PCF8575::read(void)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return (0);
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return (0);
@@ -96,7 +96,7 @@ Return:   None
 *********************************************/
 void PCF8575::write(uint16_t data)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return;
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return;
@@ -115,7 +115,7 @@ Return:   Specific pin from device
 *********************************************/
 uint8_t PCF8575::read(uint8_t pin)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return (0);
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return (0);
@@ -133,7 +133,7 @@ Return:   None
 *********************************************/
 void PCF8575::write(uint8_t pin, uint8_t state)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return;
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return;
@@ -151,7 +151,7 @@ Return:   None
 *********************************************/
 void PCF8575::shiftLeft(uint8_t n)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return;
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return;
@@ -169,7 +169,7 @@ Return:   None
 *********************************************/
 void PCF8575::shiftRight(uint8_t n)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return;
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return;
@@ -187,7 +187,7 @@ Return:   None
 *********************************************/
 void PCF8575::rotateLeft(uint8_t n)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return;
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return;
@@ -202,7 +202,7 @@ Return:   None
 *********************************************/
 void PCF8575::rotateRight(uint8_t n)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return;
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return;
@@ -221,7 +221,7 @@ Return:   None
 *********************************************/
 void PCF8575::reverse(void)
 {
-    if (!this->isOn)                                  /* Check if device is not ON */
+    if (this->isOn)                                   /* Check if device is not ON */
         return (0);
     if (this->address < 0x20 || this->address > 0x27) /* Check if device's specified address is out of bounds */
         return (0);
