@@ -11,4 +11,4 @@ PCF8585 implementation fro AVR platform
 - Bit manipulation algorithms (left or right shifting, rotating and fast bit reversing)
 
 ## Tested on
-- ATmega328P @ 16MHz
+- ATmega328P @16MHz
