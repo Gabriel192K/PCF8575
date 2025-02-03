@@ -18,8 +18,8 @@ const uint8_t PCF8575::begin(void)
         return (0);
     this->began = 1;
 
-    this->inputBuffer = 0x00;
-    this->outputBuffer = 0x00;
+    this->inputBuffer = 0x0000;
+    this->outputBuffer = 0x0000;
 
     this->twi->begin();
     return (this->isConnected());
@@ -88,8 +88,8 @@ const uint8_t PCF8575::end(void)
         return (0);
     this->began = 0;
     
-    this->inputBuffer = 0x00;
-    this->outputBuffer = 0x00;
+    this->inputBuffer = 0x0000;
+    this->outputBuffer = 0x0000;
 
     return (1);
 }
